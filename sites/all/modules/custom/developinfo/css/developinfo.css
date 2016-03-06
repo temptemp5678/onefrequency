@@ -1,0 +1,8 @@
+/**
+ * krumo-root for developing
+ */
+.alert.alert-block {
+  float: left;
+  width: 100%;
+  margin-top: 32px;
+}

@@ -1,0 +1,46 @@
+<?php
+/**
+ * @file
+ *
+ */
+
+/**
+ * Implements hook_menu()
+ */
+function jsonservice_menu() {
+  $items = array();
+
+  /** - - - - - - node - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+  $items['jsonservice/node/create'] = array(
+    'title' => 'Create Page',
+    'page callback' => '_jsonservice_node_create',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/jsonservice_node_action.page.inc',
+  );
+  $items['jsonservice/node/update'] = array(
+    'title' => 'Update Page',
+    'page callback' => '_jsonservice_node_update',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/jsonservice_node_action.page.inc',
+  );
+
+  /** - - - - - - Term - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+  $items['jsonservice/term/create'] = array(
+    'title' => 'Create Page',
+    'page callback' => '_jsonservice_term_create',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/jsonservice_term_action.page.inc',
+  );
+  $items['jsonservice/term/update'] = array(
+    'title' => 'Update Page',
+    'page callback' => '_jsonservice_term_update',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/jsonservice_term_action.page.inc',
+  );
+
+  return $items;
+}

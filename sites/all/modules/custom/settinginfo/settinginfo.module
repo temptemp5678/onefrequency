@@ -1,0 +1,197 @@
+<?php
+/**
+ * @file
+ *
+ */
+
+
+/**
+ * Implements hook_init()
+ */
+function settinginfo_init() {
+  if (!drupal_is_front_page()) {
+  }
+  drupal_add_library('settinginfo', 'settinginfo_fontawesome');
+  drupal_add_library('settinginfo', 'settinginfo_angularjs_library');
+  drupal_add_library('settinginfo', 'settinginfo_angularjs_material');
+}
+
+/**
+ * Implements hook_menu()
+ */
+function settinginfo_menu() {
+  $items = array();
+
+  $items['manage/setting/add-product'] = array(
+    'page callback' => '_manage_setting_add_product',
+    // 'access arguments' => array('access role siteadmin'),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/manage_setting_add_product.page.inc',
+  );
+
+  $items['manage/basic-page/403page'] = array(
+    'title' => '403 Page',
+    'page callback' => '_settinginfo_manage_basic_page_403',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/settinginfo_manage_basic_page.page.inc',
+  );
+  $items['manage/basic-page/404page'] = array(
+    'title' => '404 Page',
+    'page callback' => '_settinginfo_manage_basic_page_404',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/settinginfo_manage_basic_page.page.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_library().
+ */
+function settinginfo_library() {
+  $libraries = array();
+
+  $libraries_path = '';
+
+  /**
+   * load library "AngularJS"
+   */
+  $angularjs_path = libraries_get_path('angularjs') . '/';
+  $libraries['settinginfo_angularjs_library'] = array(
+    'title' => 'AngularJS',
+    'version' => '1.4.7',
+    'website' => 'https://angularjs.org/',
+    'js' => array(
+      // 'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js' => array('type' => 'external'),
+      $angularjs_path . 'angular.js' => array(),
+      $angularjs_path . 'angular-route.min.js' => array(),
+      $angularjs_path . 'angular-animate.min.js' => array(),
+      $angularjs_path . 'angular-aria.min.js' => array(),
+      $angularjs_path . 'angular-sanitize.min.js' => array(),
+      // $angularjs_path . 'angular-resource.min.js' => array(),
+    ),
+    'css' => array(
+      $angularjs_path . 'custom-angular-animate.css' => array(),
+    ),
+  );
+
+  /**
+   * "Angular Material"
+   */
+  $angularjs_material_path = libraries_get_path('angular-material') . '/';
+  $libraries['settinginfo_angularjs_material'] = array(
+    'title' => 'Angular Material',
+    'version' => 'v0.11.2',
+    'website' => 'https://github.com/angular/material#bower',
+    'js' => array(
+      $angularjs_material_path . 'angular-material.min.js' => array(),
+    ),
+    'css' => array(
+      $angularjs_material_path . 'angular-material.min.css' => array(),
+    ),
+  );
+
+  /**
+   * "Chart.js"
+   * https://github.com/nnnick/Chart.js
+   * 2.0.0-alpha4
+   */
+  $chart_js_path = libraries_get_path('Chart.js-master') . '/';
+  $libraries['settinginfo_chart_js'] = array(
+    'title' => 'Chart JS',
+    'version' => '2.0.0',
+    'website' => 'http://chartjs.org/',
+    'js' => array(
+      $chart_js_path . 'Chart.js' => array(),
+    ),
+  );
+
+  /**
+   * load library "Date Range Picker for Bootstrap"
+   * load Moment.js library which version is 2.8.4
+   *
+   * load daterangepicker js and css library
+   * load daterangepicker_controller to call js function
+   */
+  $date_picker_path = libraries_get_path('daterangepicker') . '/';
+  $libraries['settinginfo_date_range_picker'] = array(
+    'title' => 'Date Range Picker for Bootstrap',
+    'version' => '2.0.4',
+    'website' => 'https://github.com/dangrossman/bootstrap-daterangepicker',
+    'js' => array(
+      // moment.js version 2.10.3
+      $date_picker_path . 'moment.js' => array(),
+      $date_picker_path . 'daterangepicker.js' => array(),
+    ),
+    'css' => array(
+      $date_picker_path . 'daterangepicker.css' => array(),
+      $date_picker_path . 'custom_control.css' => array(),
+    ),
+  );
+
+  /**
+   * load library "Font Awesome" font-awesome-4.5.0
+   */
+  $fontawesome_path = libraries_get_path('font-awesome-4.5.0') . '/';
+  $libraries['settinginfo_fontawesome'] = array(
+    'title' => 'Font Awesome',
+    'version' => '4.4.0',
+    'website' => 'https://fortawesome.github.io/Font-Awesome/',
+    'css' => array(
+      // 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' => array('type' => 'external'),
+      $fontawesome_path . 'css/font-awesome.min.css' => array(),
+    ),
+  );
+
+  /**
+   * load library "ngCsv" ng-csv
+   *
+   * need adding angular-sanitize.min.js
+   */
+  $ngcsv_path = libraries_get_path('ng-csv-master') . '/';
+  $libraries['settinginfo_ngcsv'] = array(
+    'title' => 'ngCsv',
+    'version' => '1.0',
+    'website' => 'https://github.com/asafdav/ng-csv',
+    'js' => array(
+      $ngcsv_path . 'build/ng-csv.min.js' => array(),
+    ),
+  );
+
+  return $libraries;
+}
+
+/**
+ * Implements hook_permission()
+ */
+function settinginfo_permission() {
+  return array(
+    'access role editor' => array(
+      'title' => t('Access Role editor'),
+      'description' => t('Perform tasks for specify role.'),
+    ),
+    'access role siteadmin' => array(
+      'title' => t('Access Role Siteadmin'),
+      'description' => t('Perform tasks for specify role.'),
+    ),
+    'access role sales' => array(
+      'title' => t('Access Role Sales'),
+      'description' => t('Perform tasks for specify role.'),
+    ),
+    'access role presales' => array(
+      'title' => t('Access Role Presales'),
+      'description' => t('Perform tasks for specify role.'),
+    ),
+    'access role salesmanager' => array(
+      'title' => t('Access Role salesmanager'),
+      'description' => t('Perform tasks for specify role.'),
+    ),
+    'access role manager' => array(
+      'title' => t('Access Role manager'),
+      'description' => t('Perform tasks for specify role.'),
+    ),
+  );
+}

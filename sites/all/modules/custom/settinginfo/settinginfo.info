@@ -1,0 +1,10 @@
+name = Setting Info
+description = Other Settings for Misc
+core = 7.x
+package = Zen Other
+
+files[] = class/settinginfo.class.inc
+files[] = class/othercommonfunction.class.inc
+files[] = class/date_range_picker.class.inc
+
+version  = 7.x-1.1

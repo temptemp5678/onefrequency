@@ -1,0 +1,12 @@
+.vertical-tabs {
+  display: none;
+}
+
+#edit-field-meeting-date-und-0-value label {
+  display: none;
+}
+
+/*translation tab option*/
+.pagination .language-link{
+  margin-top: 20px;
+}

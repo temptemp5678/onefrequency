@@ -1,0 +1,122 @@
+<?php
+/**
+ * @file
+ *
+ */
+
+/**
+ * Implements hook_init()
+ */
+function jsoninfo_init() {
+  // $SourceJson = new SourceJson();
+  // OtherCommonJson::saveDataToJson($SourceJson->termBrandData(), 'shoppage/category/list/brand.json');
+}
+
+/**
+ * Implements hook_menu()
+ */
+function jsoninfo_menu() {
+  $items = array();
+
+  /** - - - - node - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+  // order
+  $items['api/json/node/all-order-data'] = array(
+    'title' => 'Create JSON',
+    'page callback' => '_jsoninfo_node_all_order_data',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/jsoninfo_api_node_output.page.inc',
+  );
+
+  // products
+  $items['api/json/node/all-product-data'] = array(
+    'title' => 'Create JSON',
+    'page callback' => '_jsoninfo_node_all_product_data',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/jsoninfo_api_node_output.page.inc',
+  );
+  $items['api/json/node/products/brand/%'] = array(
+    'title' => 'Create JSON',
+    'page callback' => '_jsoninfo_node_product_brand_data',
+    'page arguments' => array(5),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/jsoninfo_api_node_output.page.inc',
+  );
+  $items['api/json/node/products/brand-name/%'] = array(
+    'title' => 'Create JSON',
+    'page callback' => '_jsoninfo_node_product_brand_name',
+    'page arguments' => array(5),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/jsoninfo_api_node_output.page.inc',
+  );
+  $items['api/json/node/products/node-name/%'] = array(
+    'title' => 'Create JSON',
+    'page callback' => '_jsoninfo_node_product_node_name',
+    'page arguments' => array(5),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/jsoninfo_api_node_output.page.inc',
+  );
+
+  // quote
+  $items['api/json/node/all-quote-data'] = array(
+    'title' => 'Create JSON',
+    'page callback' => '_jsoninfo_node_all_quote_data',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/jsoninfo_api_node_output.page.inc',
+  );
+  $items['api/json/node/quote-list'] = array(
+    'title' => 'Create JSON',
+    'page callback' => '_jsoninfo_node_quote_list',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/jsoninfo_api_node_output.page.inc',
+  );
+
+  /** - - - - term - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+  $items['api/json/term/all-brand-data'] = array(
+    'title' => 'Create JSON',
+    'page callback' => '_jsoninfo_term_all_brand_data',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/jsoninfo_api_term_output.page.inc',
+  );
+  $items['api/json/term/all-client-data'] = array(
+    'title' => 'Create JSON',
+    'page callback' => '_jsoninfo_term_all_client_data',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/jsoninfo_api_term_output.page.inc',
+  );
+  $items['api/json/term/all-contact-data'] = array(
+    'title' => 'Create JSON',
+    'page callback' => '_jsoninfo_term_all_contact_data',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/jsoninfo_api_term_output.page.inc',
+  );
+
+  /** - - - - user - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+  $items['api/json/user/all-user-data'] = array(
+    'title' => 'User List JSON',
+    'page callback' => '_jsoninfo_user_all_user_data',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/jsoninfo_api_user_output.page.inc',
+  );
+
+  /** - - - - - - term - - - - - - - - - - - - - - - - - - - - - - - -  */
+  $items['manage/json/term/table'] = array(
+    'title' => 'Create JSON',
+    'page callback' => '_jsoninfo_term_table',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/jsoninfo_api_term.page.inc',
+  );
+
+  return $items;
+}

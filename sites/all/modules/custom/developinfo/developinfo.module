@@ -1,0 +1,17 @@
+<?php
+/**
+ * @file
+ *
+ */
+
+/*
+ * Implements hook_init()
+ */
+function developinfo_init() {
+  global $user;
+
+  if ($user->uid == 1) {
+    drupal_add_css(drupal_get_path('module', 'developinfo') . '/css/developinfo.css');
+  }
+}
+
