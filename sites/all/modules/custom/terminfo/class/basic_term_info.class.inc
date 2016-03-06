@@ -211,7 +211,6 @@ class TermClientInfo extends TermInfo {
 
     return $output;
   }
-  /** - - - - - - other - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
 }
 
