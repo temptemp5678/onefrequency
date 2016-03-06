@@ -8,11 +8,11 @@
  * Implements hook_init()
  */
 function libraryinfo_init() {
-  drupal_add_library('libraryinfo', 'libraryinfo_font_awsome');
   drupal_add_library('libraryinfo', 'libraryinfo_angularjs');
+  drupal_add_library('libraryinfo', 'libraryinfo_angularjs_material');
+  drupal_add_library('libraryinfo', 'libraryinfo_font_awsome');
   drupal_add_library('libraryinfo', 'libraryinfo_chart_js');
 
-  drupal_add_library('libraryinfo', 'libraryinfo_angularjs_material');
 }
 
 /**
@@ -27,72 +27,69 @@ function libraryinfo_library() {
   /**
    * "AngularJS "
    */
+  $angularjs_path = libraries_get_path('angularjs') . '/';
   $libraries['libraryinfo_angularjs'] = array(
     'title' => 'AngularJS',
     'version' => '1.4.7',
     'website' => 'https://angularjs.org/',
     'js' => array(
-      'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js' => array('type' => 'external'),
-      'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.min.js' => array('type' => 'external'),
-      'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js' => array('type' => 'external'),
-      'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-aria.min.js' => array('type' => 'external'),
-      'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-sanitize.min.js' => array('type' => 'external'),
-      'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-messages.min.js' => array('type' => 'external'),
-      'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.min.js' => array('type' => 'external'),
-      'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap.js' => array('type' => 'external'),
-      'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js' => array('type' => 'external'),
+      // 'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js' => array('type' => 'external'),
+      $angularjs_path . 'angular.js' => array(),
+      $angularjs_path . 'angular-route.min.js' => array(),
+      $angularjs_path . 'angular-animate.min.js' => array(),
+      $angularjs_path . 'angular-aria.min.js' => array(),
+      $angularjs_path . 'angular-sanitize.min.js' => array(),
+      // $angularjs_path . 'angular-resource.min.js' => array(),
+    ),
+    'css' => array(
+      // $angularjs_path . 'custom-angular-animate.css' => array(),
     ),
   );
 
   /**
    * "Angular Material"
    */
+  $angularjs_material_path = libraries_get_path('angular-material') . '/';
   $libraries['libraryinfo_angularjs_material'] = array(
     'title' => 'Angular Material',
     'version' => 'v0.11.2',
     'website' => 'https://github.com/angular/material#bower',
     'js' => array(
-      'https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.js' => array('type' => 'external'),
+      $angularjs_material_path . 'angular-material.min.js' => array(),
     ),
     'css' => array(
-      'https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css' => array('type' => 'external'),
+      $angularjs_material_path . 'angular-material.min.css' => array(),
     ),
   );
 
   /**
-   * "Chart.js" is Simple, clean and engaging charts for designers and developers
+   * "Chart.js"
    * https://github.com/nnnick/Chart.js
+   * 2.0.0-alpha4
    */
+  $chart_js_path = libraries_get_path('Chart.js-master') . '/';
   $libraries['libraryinfo_chart_js'] = array(
     'title' => 'Chart JS',
-    'version' => '1.0.2',
+    'version' => '2.0.0',
     'website' => 'http://chartjs.org/',
     'js' => array(
-      'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js' => array('type' => 'external'),
-      'https://cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.min.js' => array('type' => 'external'),
-      'https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js' => array('type' => 'external'),
-    ),
-    'css' => array(
-      'https://cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.css' => array('type' => 'external'),
+      $chart_js_path . 'Chart.js' => array(),
     ),
   );
 
   /**
-   * "Font Awesome"
-   * Font Awesome is a jQuery plugin that gives you the ability to make any element on your page always stay visible.
+   * load library "Font Awesome" font-awesome-4.5.0
    */
-  $font_awsome_path = libraries_get_path('font-awesome-4.4.0') . '/';
+  $fontawesome_path = libraries_get_path('font-awesome-4.5.0') . '/';
   $libraries['libraryinfo_font_awsome'] = array(
     'title' => 'Font Awesome',
-    'version' => 'v4.4.0 ',
-    'website' => 'https://github.com/FortAwesome/Font-Awesome/',
+    'version' => '4.4.0',
+    'website' => 'https://fortawesome.github.io/Font-Awesome/',
     'css' => array(
-      $font_awsome_path . 'css/font-awesome.min.css' => array(),
+      // 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' => array('type' => 'external'),
+      $fontawesome_path . 'css/font-awesome.min.css' => array(),
     ),
   );
-
-  /** - - - - - - return - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
   return $libraries;
 }
-
