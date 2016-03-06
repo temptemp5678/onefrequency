@@ -1,0 +1,37 @@
+<?php
+/**
+ * @file
+ *
+ */
+
+/**
+ * Implements hook_init()
+ */
+function reportpage_init() {
+
+}
+
+/**
+ * Implements hook_menu()
+ */
+function reportpage_menu() {
+  $items = array();
+
+  $items['report/summary/index'] = array(
+    'title' => 'Report Summary',
+    'page callback' => '_reportpage_summary_index',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/reportpage_summary_index.page.inc',
+  );
+
+  $items['report/product/chart'] = array(
+    'title' => 'D3 Chart',
+    'page callback' => '_reportpage_product_chart',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/reportpage_product_chart.page.inc',
+  );
+
+  return $items;
+}

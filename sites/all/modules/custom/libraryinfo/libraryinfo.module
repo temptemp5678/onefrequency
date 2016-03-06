@@ -10,8 +10,9 @@
 function libraryinfo_init() {
   drupal_add_library('libraryinfo', 'libraryinfo_angularjs');
   drupal_add_library('libraryinfo', 'libraryinfo_angularjs_material');
-  drupal_add_library('libraryinfo', 'libraryinfo_font_awsome');
   drupal_add_library('libraryinfo', 'libraryinfo_chart_js');
+  drupal_add_library('libraryinfo', 'libraryinfo_d3');
+  drupal_add_library('libraryinfo', 'libraryinfo_font_awsome');
 
 }
 
@@ -74,6 +75,19 @@ function libraryinfo_library() {
     'website' => 'http://chartjs.org/',
     'js' => array(
       $chart_js_path . 'Chart.js' => array(),
+    ),
+  );
+
+  /**
+   *
+   */
+  $chart_js_path = libraries_get_path('d3') . '/';
+  $libraries['libraryinfo_d3'] = array(
+    'title' => 'D3',
+    'version' => '3.5.16',
+    'website' => 'https://d3js.org/',
+    'js' => array(
+      $chart_js_path . 'd3.min.js' => array(),
     ),
   );
 
