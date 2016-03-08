@@ -24,6 +24,13 @@ function developinfo_menu() {
     'type' => MENU_CALLBACK,
     'file' => 'inc/develop_nodejs_demo.page.inc',
   );
+  $items['develop/nodejs/demo/two'] = array(
+    'title' => 'Report',
+    'page callback' => '_develop_nodejs_demo_two',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/develop_nodejs_demo.page.inc',
+  );
 
   return $items;
 }
