@@ -8,10 +8,22 @@
  * Implements hook_init()
  */
 function developinfo_init() {
-  global $user;
 
-  if ($user->uid == 1) {
-    drupal_add_css(drupal_get_path('module', 'developinfo') . '/css/developinfo.css');
-  }
 }
 
+/**
+ * Implements hook_menu()
+ */
+function developinfo_menu() {
+  $items = array();
+
+  $items['develop/nodejs/demo/one'] = array(
+    'title' => 'Report',
+    'page callback' => '_develop_nodejs_demo_one',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/develop_nodejs_demo.page.inc',
+  );
+
+  return $items;
+}
