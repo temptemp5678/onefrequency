@@ -1,0 +1,29 @@
+{
+  "userName": "hello2",
+  "question": {
+    "defaultValue": "This is a Question",
+    "updateStatus": 0
+  },
+  "scaleType": {
+    "defaultValue": "1",
+    "updateStatus": 0
+  },
+  "measurement": {
+    "defaultValue": "11",
+    "updateStatus": 0
+  },
+  "variables": {
+    "count": {
+      "defaultValue": "2",
+      "updateStatus": 0
+    },
+    "existingLables": {
+      "defaultValue": [
+        "Label 1",
+        "Label 2",
+        "Label 3"
+      ],
+      "updateStatus": 0
+    }
+  }
+}
