@@ -204,33 +204,39 @@ class NodeInfo {
 
 /**
  * class
-   $OrderInfo = new OrderInfo($order_nid);
-   $OrderInfo->description();
+   $RecordLogInfo = new RecordLogInfo($nid);
+   $RecordLogInfo->description();
  */
-class OrderInfo extends NodeInfo {
+class RecordLogInfo extends NodeInfo {
   /**
-   * @return integer, date unix stamp for quote order time
+   * @return integer,
    */
-  public function dateUnixStamp() {
+  public function timeNs() {
     $output = NULL;
-    if (isset($this->node->field_order_date['und'][0]['value'])) {
-      $output = $this->node->field_order_date['und'][0]['value'];
+    if (isset($this->node->field_recordlog_time['und'][0]['value'])) {
+      $output = $this->node->field_recordlog_time['und'][0]['value'];
     }
     return $output;
   }
   /**
-   * @return integer, date unix stamp
+   * @return decimal,
    */
-  public function dateValue($format = NULL) {
-    if (!$format) {
-      $format = "Y-m-d";
+  public function velocity1() {
+    $output = NULL;
+    if (isset($this->node->field_recordlog_velocity1['und'][0]['value'])) {
+      $output = $this->node->field_recordlog_velocity1['und'][0]['value'];
     }
+    return $output;
+  }
+  /**
+   * @return decimal,
+   */
+  public function velocity2() {
+    $output = NULL;
+    if (isset($this->node->field_recordlog_velocity2['und'][0]['value'])) {
+      $output = $this->node->field_recordlog_velocity2['und'][0]['value'];
+    }
+    return $output;
+  }
 
-    $output = NULL;
-    $stamp = $this->dateUnixStamp();
-    if ($stamp) {
-      $output = format_date($stamp, 'custom', $format);
-    }
-    return $output;
-  }
 }

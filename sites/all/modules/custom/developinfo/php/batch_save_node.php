@@ -5,6 +5,8 @@
 drupal_set_time_limit(0);
 require_once(DRUPAL_ROOT . '/sites/all/modules/custom/developinfo/php/batch_save_node.php');
 _get_csv_array();
+removeRecordLogNid();
+
  */
 
 /**
@@ -83,9 +85,11 @@ function removeRecordLogNid() {
   $nids = allRecordLogNid();
 dpm(count($nids));
 
+  timer_start('your_key2');
   if (is_array($nids)) {
     // node_delete_multiple($nids);
   }
+  dpm(timer_stop('your_key2'));
 }
 
 function allRecordLogNid() {

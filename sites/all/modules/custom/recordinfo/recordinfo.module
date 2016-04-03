@@ -1,0 +1,29 @@
+<?php
+/**
+ * @file
+ *
+ */
+
+/**
+ * Implements hook_init()
+ */
+function recordinfo_init() {
+
+}
+
+/**
+ * Implements hook_menu()
+ */
+function recordinfo_menu() {
+  $items = array();
+
+  $items['record/summary/index'] = array(
+    'title' => 'Report Summary',
+    'page callback' => '_record_summary_index',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'inc/record_summary_index.page.inc',
+  );
+
+  return $items;
+}

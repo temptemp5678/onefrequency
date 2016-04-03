@@ -12,11 +12,11 @@ class JsonDataUnit {
    *
    * @return array
    */
-  public function nodeQuoteList($user = NULL) {
+  public function nodeRecordLogBasicValues() {
     $NodeQuery = new NodeQuery();
-    $all_quote_nid = $NodeQuery->allQuoteNid();
+    $node_nids = $NodeQuery->nodesByBundles(array('record_log'));
 
-    $nodes = node_load_multiple($all_quote_nid);
+    $nodes = node_load_multiple($node_nids);
 
     /**
      * data row array
@@ -26,11 +26,13 @@ class JsonDataUnit {
 
     if (is_array($nodes)) {
       foreach($nodes as $node) {
-        $QuoteInfo = new QuoteInfo($node);
+        $RecordLogInfo = new RecordLogInfo($node);
 
-        if ($QuoteInfo->accessView($user)) {
-          $data_row['nodes']['quote'][] = $QuoteInfo->allMethodsValue();
-        }
+        $data_row['nodes']['recordLog'][] = array(
+          'timeNs' => $RecordLogInfo->timeNs(),
+          'velocity1' => $RecordLogInfo->velocity1(),
+          'velocity2' => $RecordLogInfo->velocity2(),
+        );
       }
     }
 
@@ -161,13 +163,8 @@ class JsonData extends JsonDataUnit  {
    * @return Array data
    * for current user
    */
-  public function jsonNodeQuoteList() {
-    global $user;
-    if (!isset($account)) {
-      $account = $GLOBALS['user'];
-    }
-
-    $output = $this->nodeQuoteList($account);
+  public function jsonNodeRecordLogBasicValues() {
+    $output = $this->nodeRecordLogBasicValues();
     return $output;
   }
 
@@ -176,26 +173,25 @@ class JsonData extends JsonDataUnit  {
   /**
    * @return Term Array data
    */
-  public function jsonTermTable($vid = NULL) {
-    $output = $this->termTable($vid);
-    return $output;
-  }
+  // public function jsonTermTable($vid = NULL) {
+  //   $output = $this->termTable($vid);
+  //   return $output;
+  // }
 
   /** - - - - - - user - - - - - - - - - - - - - - - - - - - - - - - -  */
   /**
    * @return Array data
    */
-  public function jsonUserList() {
-    $output = NULL;
+  // public function jsonUserList() {
+  //   $output = NULL;
 
-    $output['userList'] = $this->allUserList();
-    $output['termBusinessUnit'] = $this->termBusinessUnit();
-    $output['termCity'] = $this->termCityArrayFile();
-    $output['termProvince'] = $this->termProvince();
-    $output['termTherapeuticArea'] = $this->termTherapeuticArea();
+  //   $output['userList'] = $this->allUserList();
+  //   $output['termBusinessUnit'] = $this->termBusinessUnit();
+  //   $output['termCity'] = $this->termCityArrayFile();
+  //   $output['termProvince'] = $this->termProvince();
+  //   $output['termTherapeuticArea'] = $this->termTherapeuticArea();
 
-    return $output;
-  }
-
+  //   return $output;
+  // }
 
 }

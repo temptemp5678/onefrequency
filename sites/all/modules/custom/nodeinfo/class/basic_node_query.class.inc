@@ -9,70 +9,18 @@
  */
 class NodeQuery {
 
-  /** - - - - - - common - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+  /** - - - - - - common Node Type- - - - - - - - - - - - - - - - - - - - - - - - - -  */
   /**
    * @parameter, $node_type is array()
    *
    * @return array,
    * all Product NID
    */
-  public function specifyBundleNid($node_type = array()) {
+  public function nodesByBundles($node_type = array()) {
 
     $query = new EntityFieldQuery;
     $query->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', $node_type)
-      ->propertyCondition('status', NODE_PUBLISHED);
-
-    $result = $query->execute();
-
-    $nid_array = NULL;
-    if (isset($result['node'])) {
-      if (count($result['node']) > 0 ) {
-        $nid_array = array_keys($result['node']);
-      }
-    }
-
-    return $nid_array;
-  }
-
-  /** - - - - - - common - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-  /**
-   * @parameter, $node_type is array()
-   *
-   * @return array,
-   * all Product NID
-   */
-  public function productByBrandNid($node_type = array(), $brand_tids = array()) {
-
-    $query = new EntityFieldQuery;
-    $query->entityCondition('entity_type', 'node')
-      ->entityCondition('bundle', $node_type)
-      ->propertyCondition('status', NODE_PUBLISHED);
-    $query->fieldCondition('field_product_brand', 'target_id', $brand_tids, 'IN');
-
-    $result = $query->execute();
-
-    $nid_array = NULL;
-    if (isset($result['node'])) {
-      if (count($result['node']) > 0 ) {
-        $nid_array = array_keys($result['node']);
-      }
-    }
-
-    return $nid_array;
-  }
-
-  /** - - - - - - other - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-  /**
-   * @parameter ,
-   *
-   * @return array,
-   * all Meeting NID
-   */
-  public function allRecordLogNid() {
-    $query = new EntityFieldQuery;
-    $query->entityCondition('entity_type', 'node')
-      ->entityCondition('bundle', 'record_log')
       ->propertyCondition('status', NODE_PUBLISHED);
 
     $result = $query->execute();

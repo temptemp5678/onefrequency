@@ -1,0 +1,6 @@
+name = Record Log Info
+description = Record Log Node Type Info
+core = 7.x
+package = Zen Other
+
+version  = 7.x-1.1
