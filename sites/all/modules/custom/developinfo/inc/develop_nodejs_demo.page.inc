@@ -24,6 +24,10 @@ function _develop_nodejs_demo_one() {
  */
 function _develop_nodejs_demo_two() {
   drupal_add_js(drupal_get_path('module', 'developinfo') . '/js/develop_nodejs_demo_two.js');
+  $response = exec('/Applications/AMPPS/www/lillydash/sites/default/files/phantomjs/bin/phantomjs sample2.js');
+  // $response = exec('pwd');
+dpm($response);
+echo($response);
 
   if (isset($_GET['url'])) {
     dpm($_GET["url"]);

@@ -37,7 +37,7 @@ var fs = require('fs');
 var tomString = '{ "name": "Tom" }';
 fs.writeFile('tom.json', tomString);
 
-// object formmat and converts to JSON
+// object formmat, and converts to JSON
 var mikeString = {
   name: 'mike'
 };

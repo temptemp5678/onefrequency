@@ -69,10 +69,10 @@ class NodeQuery {
    * @return array,
    * all Meeting NID
    */
-  public function allQuoteNid() {
+  public function allRecordLogNid() {
     $query = new EntityFieldQuery;
     $query->entityCondition('entity_type', 'node')
-      ->entityCondition('bundle', 'quote')
+      ->entityCondition('bundle', 'record_log')
       ->propertyCondition('status', NODE_PUBLISHED);
 
     $result = $query->execute();
