@@ -38,13 +38,15 @@ class JsonDataUnit {
       //   );
       // }
 
-      for ($x = 900; $x <= 1000; $x++) {
-        $RecordLogInfo = new RecordLogInfo($nodes[$x]);
-        $data_row['nodes']['recordLog'][] = array(
-          'timeNs' => $RecordLogInfo->timeNs(),
-          'velocity1' => $RecordLogInfo->velocity1(),
-          'velocity2' => $RecordLogInfo->velocity2(),
-        );
+      for ($x = 990; $x <= 1000; $x++) {
+        if (isset($nodes[$x])) {
+          $RecordLogInfo = new RecordLogInfo($nodes[$x]);
+          $data_row['nodes']['recordLog'][] = array(
+            'timeNs' => $RecordLogInfo->timeNs(),
+            'velocity1' => $RecordLogInfo->velocity1(),
+            'velocity2' => $RecordLogInfo->velocity2(),
+          );
+        }
       }
     }
 

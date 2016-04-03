@@ -13,7 +13,7 @@ removeRecordLogNid();
  * node save
  */
 function _get_csv_array($param_array = NULL) {
-  $csv_file = drupal_get_path('module', 'developinfo') . '/php/source/huaneng-02251056-1M.csv';
+  $csv_file = drupal_get_path('module', 'developinfo') . '/php/source/huaneng-02251054.csv';
 
   $handle = fopen($csv_file, 'r');
 
@@ -83,11 +83,12 @@ function _save_recordlog_node($param_array = NULL) {
  */
 function removeRecordLogNid() {
   $nids = allRecordLogNid();
+  $nids = array_slice($nids, 0, 8000);
 dpm(count($nids));
 
   timer_start('your_key2');
   if (is_array($nids)) {
-    // node_delete_multiple($nids);
+    node_delete_multiple($nids);
   }
   dpm(timer_stop('your_key2'));
 }
