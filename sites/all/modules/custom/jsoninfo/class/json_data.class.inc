@@ -25,9 +25,21 @@ class JsonDataUnit {
     $data_row['nodes'] = array();
 
     if (is_array($nodes)) {
-      foreach($nodes as $node) {
-        $RecordLogInfo = new RecordLogInfo($node);
+      // foreach($nodes as $key => $node) {
+      //   if ($key > 2000) {
+      //     break;
+      //   }
 
+      //   $RecordLogInfo = new RecordLogInfo($node);
+      //   $data_row['nodes']['recordLog'][] = array(
+      //     'timeNs' => $RecordLogInfo->timeNs(),
+      //     'velocity1' => $RecordLogInfo->velocity1(),
+      //     'velocity2' => $RecordLogInfo->velocity2(),
+      //   );
+      // }
+
+      for ($x = 900; $x <= 1000; $x++) {
+        $RecordLogInfo = new RecordLogInfo($nodes[$x]);
         $data_row['nodes']['recordLog'][] = array(
           'timeNs' => $RecordLogInfo->timeNs(),
           'velocity1' => $RecordLogInfo->velocity1(),
